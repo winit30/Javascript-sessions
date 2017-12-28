@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Page Title</title>
+  </head>
+  <style>
+    body {
+      margin:0;
+      padding:0;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    .slider {
+      width: 1170px;
+    }
+    ul {
+      width:100%;
+      padding:0px;
+      margin:0;
+      list-style: none;
+      border: 15px solid #000;
+      overflow: hidden;
+      position: relative;
+      height:560px;
+    }
+
+    li {
+      width:100%;
+      position: absolute;
+      opacity:0;
+      transition:opacity 1s linear;*
+    }
+
+    li:first-child {
+      opacity: 1;
+    }
+
+    img {
+      max-width: 100%;
+      float: left;
+    }
+
+  </style>
+  <body>
+    <div class="slider" id="slider">
+      <ul>
+        <li><img src="images/image-1.jpg" /></li>
+        <li><img src="images/image-2.jpg" /></li>
+        <li><img src="images/image-3.jpeg" /></li>
+        <li><img src="images/image-4.jpg" /></li>
+      </ul>
+    </div>
+
+
+  <script src="slider.js"></script>
+  </body>
+</html>

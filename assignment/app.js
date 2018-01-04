@@ -21,30 +21,39 @@ for(var i = 0; i < elements.length; i++) {
   document.body.appendChild(el);
 }
 
-(function() {
+function initApp() {
+  var list = document.getElementsByTagName('ul')[0];
+  while (list.firstChild) {
+     list.removeChild(list.firstChild);
+  }
   var data = JSON.parse(localStorage.listName);
   for(var i = 0; i< data.length;i++){
     var listItem = document.createElement("LI");
     var listText = document.createTextNode(data[i]);
     listItem.appendChild(listText);
-    var list = document.getElementsByTagName('ul')[0];
     list.appendChild(listItem);
+    var button = document.createElement("button");
+    button.innerHTML = "Delete";
+    listItem.appendChild(button);
+    button.addEventListener('click', (function(k){
+      return function() {
+        data.splice(k, 1);
+        localStorage.listName = JSON.stringify(data);
+        initApp();
+      }
+    })(i))
   }
-})();
+}
+
+initApp();
 
 function addName() {
     var inputVal = document.getElementById('inputVal').value;
     if(inputVal != ""){
-
       var data = JSON.parse(localStorage.listName);
       data.push(inputVal);
       localStorage.listName = JSON.stringify(data);
-
-      var listItem = document.createElement("LI");
-      var listText = document.createTextNode(inputVal);
-      listItem.appendChild(listText);
-      var list = document.getElementsByTagName('ul')[0];
-      list.appendChild(listItem);
+      initApp();
       document.getElementById('inputVal').value = "";
     } else {
       alert('Please type some value');

@@ -49,7 +49,7 @@ list.forEach(function(item, index){
 
 var names = list.map(function(item, index){
                 return item.name;
-              });              
+              });
 
 var filteredList = list.filter(function(item, index, array){
 
